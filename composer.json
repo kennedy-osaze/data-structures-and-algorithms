@@ -1,0 +1,40 @@
+{
+    "name": "kennedyosaze/data-structures-and-algorithms",
+    "description": "Learning data structures and algorithm with PHP",
+    "keywords": [
+        "PHP",
+        "data-structures",
+        "algorithm"
+    ],
+    "homepage": "https://github.com/kennedyosaze/data-structures-and-algorithm",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Kennedy Osaze",
+            "email": "me.osaze@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "KennedyOsaze\\DataStructures\\": "src/DataStructures",
+            "KennedyOsaze\\Algorithms\\": "src/Algorithms"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "KennedyOsaze\\DataStructures\\Tests\\": "tests/DataStructures",
+            "KennedyOsaze\\Algorithms\\Tests\\": "tests/Algorithms"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+    }
+}
