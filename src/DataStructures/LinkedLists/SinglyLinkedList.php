@@ -6,6 +6,9 @@ use KennedyOsaze\DataStructures\LinkedLists\Nodes\SinglyLinkedListNode;
 
 class SinglyLinkedList extends LinkedList
 {
+    /**
+     * @inheritDoc
+     */
     public function prepend($value)
     {
         $node = $this->createNodeFromValue($value);
@@ -21,6 +24,9 @@ class SinglyLinkedList extends LinkedList
         $this->size += 1;
     }
 
+    /**
+     * @inheritDoc
+     */
     public function append($value)
     {
         $node = $this->createNodeFromValue($value);
@@ -36,6 +42,9 @@ class SinglyLinkedList extends LinkedList
         $this->size += 1;
     }
 
+    /**
+     * @inheritDoc
+     */
     public function insert(int $index, $value)
     {
         if ($index < 0) {
@@ -61,6 +70,11 @@ class SinglyLinkedList extends LinkedList
         $this->size++;
     }
 
+    /**
+     * Removes the first node in the Linked list and returns its data
+     *
+     * @return mixed
+     */
     public function removeFirst()
     {
         if ($this->head === null) {
@@ -80,6 +94,9 @@ class SinglyLinkedList extends LinkedList
         return $node->getData();
     }
 
+    /**
+     * @inheritDoc
+     */
     public function remove(int $index)
     {
         if (! $this->isIndexValid($index)) {
