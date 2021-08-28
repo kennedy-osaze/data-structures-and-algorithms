@@ -6,6 +6,9 @@ use KennedyOsaze\DataStructures\LinkedLists\Nodes\DoublyLinkedListNode;
 
 class DoublyLinkedList extends LinkedList
 {
+    /**
+     * {@inheritDoc}
+     */
     public function prepend($value)
     {
         $node = $this->createNodeFromValue($value);
@@ -22,6 +25,9 @@ class DoublyLinkedList extends LinkedList
         $this->size += 1;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function append($value)
     {
         $node = $this->createNodeFromValue($value);
@@ -38,6 +44,9 @@ class DoublyLinkedList extends LinkedList
         $this->size += 1;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function insert(int $index, $value)
     {
         if ($index < 0) {
@@ -65,7 +74,12 @@ class DoublyLinkedList extends LinkedList
         $this->size++;
     }
 
-    public function removeFirst()
+    /**
+     * Delete the first node in the list
+     *
+     * @return void
+     */
+    public function deleteFirst()
     {
         if ($this->head === null) {
             return $this->head;
@@ -85,7 +99,12 @@ class DoublyLinkedList extends LinkedList
         return $node->getData();
     }
 
-    public function removeLast()
+    /**
+     * Delete the last node in the list
+     *
+     * @return void
+     */
+    public function deleteLast()
     {
         if ($this->tail === null) {
             return;
@@ -110,18 +129,21 @@ class DoublyLinkedList extends LinkedList
         return $node->getData();
     }
 
-    public function remove(int $index)
+    /**
+     * {@inheritDoc}
+     */
+    public function delete(int $index)
     {
         if (! $this->isIndexValid($index)) {
             return null;
         }
 
         if ($index === 0 || $this->head === $this->tail) {
-            return $this->removeFirst();
+            return $this->deleteFirst();
         }
 
         if (($index + 1) === $this->size) {
-            return $this->removeLast();
+            return $this->deleteLast();
         }
 
         $current = $this->traverseToIndex($index);
@@ -145,8 +167,6 @@ class DoublyLinkedList extends LinkedList
      */
     protected function createNodeFromValue($value)
     {
-        return ($value instanceof DoublyLinkedListNode)
-            ? $value
-            : new DoublyLinkedListNode($value);
+        return ($value instanceof DoublyLinkedListNode) ? $value : new DoublyLinkedListNode($value);
     }
 }

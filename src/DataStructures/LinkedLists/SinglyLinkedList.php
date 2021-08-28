@@ -75,7 +75,7 @@ class SinglyLinkedList extends LinkedList
      *
      * @return mixed
      */
-    public function removeFirst()
+    public function deleteFirst()
     {
         if ($this->head === null) {
             return $this->head;
@@ -97,14 +97,14 @@ class SinglyLinkedList extends LinkedList
     /**
      * @inheritDoc
      */
-    public function remove(int $index)
+    public function delete(int $index)
     {
         if (! $this->isIndexValid($index)) {
             return null;
         }
 
         if ($index === 0 || $this->size === 1) {
-            return $this->removeFirst();
+            return $this->deleteFirst();
         }
 
         $previous = $this->traverseToIndex($index - 1);
@@ -129,8 +129,6 @@ class SinglyLinkedList extends LinkedList
      */
     protected function createNodeFromValue($value)
     {
-        return ($value instanceof SinglyLinkedListNode)
-            ? $value
-            : new SinglyLinkedListNode($value);
+        return ($value instanceof SinglyLinkedListNode) ? $value : new SinglyLinkedListNode($value);
     }
 }

@@ -34,13 +34,13 @@ interface LinkedList
     public function insert(int $index, $value);
 
     /**
-     * Removes the node at the specified index, returning the value stored in that node
+     * Delete the node at the specified index, returning the value stored in that node
      *
      * @param int $index
      *
      * @return mixed
      */
-    public function remove(int $index);
+    public function delete(int $index);
 
     /**
      * Searches through the LinkedList for the specified value

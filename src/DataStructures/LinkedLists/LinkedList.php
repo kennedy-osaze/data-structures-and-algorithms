@@ -2,25 +2,22 @@
 
 namespace KennedyOsaze\DataStructures\LinkedLists;
 
-use KennedyOsaze\DataStructures\LinkedLists\{
-    Nodes\Node,
-    Interfaces\LinkedList as LinkedListInterface,
-};
+use ArrayAccess;
+use Countable;
+use IteratorAggregate;
+use KennedyOsaze\DataStructures\LinkedLists\Interfaces\LinkedList as LinkedListInterface;
+use KennedyOsaze\DataStructures\LinkedLists\Nodes\Node;
 
-abstract class LinkedList implements
-    LinkedListInterface,
-    \IteratorAggregate,
-    \Countable,
-    \ArrayAccess
+abstract class LinkedList implements LinkedListInterface, IteratorAggregate, Countable, ArrayAccess
 {
-    protected $head = null;
+    protected ?Node $head = null;
 
-    protected $tail = null;
+    protected ?Node $tail = null;
 
-    protected $size = 0;
+    protected int $size = 0;
 
     /**
-     * Initialize list
+     * Initialize Linked list
      *
      * @param mixed $value
      *
@@ -263,7 +260,7 @@ abstract class LinkedList implements
      */
     public function offsetExists($offset)
     {
-        return $this->offsetGet($offset) !==  null;
+        return $this->offsetGet($offset) !== null;
     }
 
     /**
@@ -274,7 +271,7 @@ abstract class LinkedList implements
     public function offsetUnset($offset)
     {
         if ($this->offsetExists($offset)) {
-            $this->remove($offset);
+            $this->delete($offset);
         }
     }
 
