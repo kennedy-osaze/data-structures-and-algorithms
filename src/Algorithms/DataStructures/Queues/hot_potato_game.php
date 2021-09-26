@@ -1,6 +1,6 @@
 <?php
 
-namespace KennedyOsaze\Algorithms\DataStructures\Queue;
+namespace KennedyOsaze\Algorithms\DataStructures\Queues;
 
 use KennedyOsaze\DataStructures\Queues\Queue;
 
