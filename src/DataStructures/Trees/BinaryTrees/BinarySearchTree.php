@@ -4,14 +4,14 @@ namespace KennedyOsaze\Algorithms\DataStructures\Trees\BinaryTrees;
 
 class BinarySearchTree
 {
-    private ?Node $root = null;
+    protected ?Node $root = null;
 
-    private int $size = 0;
+    protected int $size = 0;
 
     public function __construct($rootValue = null)
     {
         if ($rootValue !== null) {
-            $this->root = $this->createNode($rootValue);
+            $this->insert($rootValue);
         }
     }
 
@@ -19,56 +19,50 @@ class BinarySearchTree
     {
         $node = $this->createNode($value);
 
-        if ($this->root === null) {
-            $this->root = $node;
-
-            return;
-        }
-
-        $this->insertNode($this->root, $node);
-
-        $this->size++;
+        $this->root = $this->insertNode($node, $this->root);
     }
 
-    private function insertNode(Node $parent, Node $node)
+    protected function insertNode(Node $node, ?Node $parent = null)
     {
-        if ($parent->getValue() > $node->getValue()) {
-            if ($parent->getLeft() === null) {
-                $parent->setLeft($node);
-            } else {
-                $this->insertNode($parent->getLeft(), $node);
-            }
-        } else {
-            if ($parent->getRight() === null) {
-                $parent->setRight($node);
-            } else {
-                $this->insertNode($parent->getRight(), $node);
-            }
+        if ($parent === null) {
+            $this->size++;
+
+            return $node;
         }
+
+        if ($parent->getValue() > $node->getValue()) {
+            $parent->setLeft($this->insertNode($node, $parent->getLeft()));
+        } elseif ($parent->getValue() < $node->getValue()) {
+            $parent->setRight($this->insertNode($node, $parent->getRight()));
+        }
+
+        return $parent;
     }
 
     public function delete($value)
     {
-        return $this->deleteNode($this->root, $value);
+        $this->root = $this->deleteNode($this->root, $value);
     }
 
-    private function deleteNode(?Node $node = null, $value)
+    protected function deleteNode(?Node $node = null, $value)
     {
         if ($node === null) {
             return null;
         }
 
         if ($node->getValue() > $value) {
-            $node->setLeft($this->deleteNode($node, $value));
+            $node->setLeft($this->deleteNode($node->getLeft(), $value));
 
             return $node;
         }
 
         if ($node->getValue() < $value) {
-            $node->setRight($this->deleteNode($node, $value));
+            $node->setRight($this->deleteNode($node->getRight(), $value));
 
             return $node;
         }
+
+        $this->size--;
 
         if ($node->getLeft() === null && $node->getRight() === null) {
             return null;
@@ -83,9 +77,7 @@ class BinarySearchTree
 
         $newNode = $this->maximumNode($node->getLeft());
         $node->setValue($newNode->getValue());
-        $this->deleteNode($node->getLeft(), $newNode->getValue());
-
-        $this->size--;
+        $node->setLeft($this->deleteNode($node->getLeft(), $newNode->getValue()));
 
         return $node;
     }
@@ -100,7 +92,7 @@ class BinarySearchTree
         return $this->root ? $this->maximumNode($this->root) : null;
     }
 
-    private function maximumNode(Node $node = null)
+    protected function maximumNode(Node $node = null)
     {
         while ($node !== null && $node->getRight() !== null) {
             $node = $node->getRight();
@@ -109,7 +101,7 @@ class BinarySearchTree
         return $node;
     }
 
-    private function minimumNode(Node $node = null)
+    protected function minimumNode(Node $node = null)
     {
         while ($node !== null && $node->getLeft() !== null) {
             $node = $node->getLeft();
@@ -137,6 +129,20 @@ class BinarySearchTree
         return false;
     }
 
+    public function height()
+    {
+        $node = empty(func_get_args()) ? $this->root : func_get_arg(0);
+
+        if ($node === null) {
+            return -1;
+        }
+
+        $leftHeight = $this->height($node->getLeft());
+        $rightHeight = $this->height($node->getRight());
+
+        return max($leftHeight, $rightHeight) + 1;
+    }
+
     public function count()
     {
         return $this->size;
@@ -156,7 +162,7 @@ class BinarySearchTree
         return ['root' => $this->convertNodeToArray($this->root)];
     }
 
-    private function convertNodeToArray(?Node $node = null)
+    protected function convertNodeToArray(?Node $node = null)
     {
         if ($node === null) {
             return null;
@@ -169,7 +175,7 @@ class BinarySearchTree
         ];
     }
 
-    private function createNode($value)
+    protected function createNode($value)
     {
         return $value instanceof Node ? $value : new Node($value);
     }
