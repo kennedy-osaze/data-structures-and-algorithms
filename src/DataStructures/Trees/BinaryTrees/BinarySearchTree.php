@@ -2,6 +2,8 @@
 
 namespace KennedyOsaze\Algorithms\DataStructures\Trees\BinaryTrees;
 
+use KennedyOsaze\Algorithms\DataStructures\Trees\BinaryTrees\Nodes\Node;
+
 class BinarySearchTree
 {
     protected ?Node $root = null;

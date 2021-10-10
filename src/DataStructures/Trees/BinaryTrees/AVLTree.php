@@ -2,6 +2,8 @@
 
 namespace KennedyOsaze\Algorithms\DataStructures\Trees\BinaryTrees;
 
+use KennedyOsaze\Algorithms\DataStructures\Trees\BinaryTrees\Nodes\Node;
+
 class AVLTree extends BinarySearchTree
 {
     protected function insertNode(Node $node, ?Node $parent = null)
