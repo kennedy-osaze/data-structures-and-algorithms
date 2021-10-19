@@ -17,7 +17,7 @@ class RedBlackTree extends BinarySearchTree
         } else {
             $node = $this->insertRedBlackNode($node, $this->root);
 
-            $this->balance($node);
+            $this->balanceInsertion($node);
         }
 
         $this->size++;
@@ -46,7 +46,7 @@ class RedBlackTree extends BinarySearchTree
         return $this->insertRedBlackNode($node, $parent->getRight());
     }
 
-    private function balance(RedBlackNode $node)
+    private function balanceInsertion(RedBlackNode $node)
     {
         $parent = $node->getParent();
 
@@ -55,7 +55,7 @@ class RedBlackTree extends BinarySearchTree
         }
 
         $grandParent = $parent->getParent();
-        $uncle = $grandParent->getLeft() === $parent ? $grandParent->getRight() : $grandParent->getLeft();
+        $uncle = $node->getUncle();
 
         if ($uncle === null || $uncle->isBlack()) {
             $this->rotate($node);
@@ -73,7 +73,161 @@ class RedBlackTree extends BinarySearchTree
             $this->root = $node;
         }
 
-        $this->balance($grandParent);
+        $this->balanceInsertion($grandParent);
+    }
+
+    public function delete($value)
+    {
+        $node = $this->search($value);
+
+        if ($node === false) {
+            return;
+        }
+
+        $this->deleteNode($node, $value);
+    }
+
+    protected function deleteNode(?Node $node = null, $value)
+    {
+        assert($node instanceof RedBlackNode);
+        assert($node !== null);
+
+        $replacerNode = $this->findReplacerNodeForDeletableNode($node);
+        $parent = $node->getParent();
+
+        $doubleBlackExists = ($replacerNode === null || $replacerNode->isBlack()) && $node->isBlack();
+
+        // $node is basically a leaf node (has no child)
+        if ($replacerNode === null) {
+            if ($this->root === $node) {
+                $this->root = null;
+            } else {
+                // $node is a black node
+                if ($doubleBlackExists) {
+                    $this->fixDoubleBlackAtNode($node);
+                }
+
+                if ($parent->getLeft() === $node) {
+                    $parent->setLeft(null);
+                } else {
+                    $parent->setRight(null);
+                }
+            }
+
+            return;
+        }
+
+        // $node has one child
+        if ($node->getLeft() === null || $node->getRight() === null) {
+            if ($node === $this->root) {
+                $node->setValue($replacerNode->getValue());
+                $node->setLeft(null);
+                $node->setRight(null);
+
+                return;
+            }
+
+            if ($parent->getLeft() === $node) {
+                $parent->setLeft($replacerNode);
+            } else {
+                $parent->setRight($replacerNode);
+            }
+
+            $replacerNode->setParent($parent);
+
+            if ($doubleBlackExists) {
+                $this->fixDoubleBlackAtNode($replacerNode);
+            } else {
+                $replacerNode->makeBlack();
+            }
+
+            return;
+        }
+
+        // $node has two children, swap the values with the $replacerNode and recurse
+        $value = $node->getValue();
+        $node->setValue($replacerNode->getValue());
+        $replacerNode->setValue($value);
+
+        $this->deleteNode($replacerNode, $value);
+    }
+
+    private function findReplacerNodeForDeletableNode(RedBlackNode $node): ?RedBlackNode
+    {
+        if ($node->getLeft() === null && $node->getRight() === null) {
+            return null;
+        }
+
+        if ($node->getLeft() === null || $node->getRight() === null) {
+            return $node->getLeft() === null ? $node->getRight() : $node->getLeft();
+        }
+
+        return $this->minimumNode($node->getRight());
+    }
+
+    private function fixDoubleBlackAtNode(RedBlackNode $node)
+    {
+        if ($this->root === $node) {
+            return;
+        }
+
+        $sibling = $node->getSibling();
+        $parent = $node->getParent();
+
+        if ($sibling === null) {
+            return $this->fixDoubleBlackAtNode($parent);
+        }
+
+        if ($sibling->isRed()) {
+            $sibling->makeBlack();
+            $parent->makeRed();
+
+            if ($parent->getLeft() === $node) {
+                $this->rotateLeft($parent);
+            } else {
+                $this->rotateRight($parent);
+            }
+
+            return $this->fixDoubleBlackAtNode($node);
+        }
+
+        // $sibling has one of its children to be red
+        if ($sibling->getLeft() !== null && $sibling->getLeft()->isRed()) {
+            if ($parent->getLeft() === $sibling) {
+                $sibling->isBlack() ? $sibling->getLeft()->makeBlack() : $sibling->getLeft()->makeRed();
+                $parent->isBlack() ? $sibling->makeBlack() : $sibling->makeRed();
+
+                $this->rotateRight($parent);
+            } else {
+                $parent->isBlack() ? $sibling->getLeft()->makeBlack() : $sibling->getLeft()->makeRed();
+
+                $this->rotateRightLeft($parent);
+            }
+
+            $parent->makeBlack();
+        } elseif ($sibling->getRight() !== null && $sibling->getRight()->isRed()) {
+            if ($parent->getLeft() === $sibling) {
+                $parent->isBlack() ? $sibling->getRight()->makeBlack() : $sibling->getRight()->makeRed();
+
+                $this->rotateLeftRight($parent);
+            } else {
+                $sibling->isBlack() ? $sibling->getRight()->makeBlack() : $sibling->getRight()->makeRed();
+                $parent->isBlack() ? $sibling->makeBlack() : $sibling->makeRed();
+
+                $this->rotateLeft($parent);
+            }
+
+            $parent->makeBlack();
+        } else {
+            // sibling is a leaf or its children are both black
+            $sibling->makeRed();
+
+            if ($parent->isRed()) {
+                $parent->makeBlack();
+            } else {
+                $this->fixDoubleBlackAtNode($parent);
+            }
+        }
     }
 
     private function rotate(RedBlackNode $node)

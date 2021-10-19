@@ -48,8 +48,30 @@ class RedBlackNode extends Node
         $this->parent = $node;
     }
 
-    public function getParent()
+    public function getParent(): ?self
     {
         return $this->parent;
+    }
+
+    public function getUncle(): ?self
+    {
+        $parent = $this->getParent();
+
+        if ($parent === null) {
+            return null;
+        }
+
+        return $parent->getSibling();
+    }
+
+    public function getSibling(): ?self
+    {
+        $parent = $this->getParent();
+
+        if ($parent === null) {
+            return null;
+        }
+
+        return ($parent->getLeft() === $this) ? $parent->getRight() : $parent->getLeft();
     }
 }
