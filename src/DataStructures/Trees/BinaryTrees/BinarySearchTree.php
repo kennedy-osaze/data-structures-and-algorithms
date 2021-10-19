@@ -2,6 +2,8 @@
 
 namespace KennedyOsaze\Algorithms\DataStructures\Trees\BinaryTrees;
 
+use KennedyOsaze\Algorithms\DataStructures\Trees\BinaryTrees\Nodes\Node;
+
 class BinarySearchTree
 {
     protected ?Node $root = null;
@@ -75,9 +77,9 @@ class BinarySearchTree
             return $newNode;
         }
 
-        $newNode = $this->maximumNode($node->getLeft());
+        $newNode = $this->minimumNode($node->getRight());
         $node->setValue($newNode->getValue());
-        $node->setLeft($this->deleteNode($node->getLeft(), $newNode->getValue()));
+        $node->setRight($this->deleteNode($node->getRight(), $newNode->getValue()));
 
         return $node;
     }
@@ -116,7 +118,7 @@ class BinarySearchTree
 
         while ($current !== null) {
             if ($current->getValue() === $value) {
-                return true;
+                return $current;
             }
 
             if ($current->getValue() > $value) {
