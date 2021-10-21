@@ -1,8 +1,8 @@
 <?php
 
-namespace KennedyOsaze\DataStructures\LinkedLists;
+namespace KennedyOsaze\DataStructuresAndAlgorithms\DataStructures\LinkedLists;
 
-use KennedyOsaze\DataStructures\LinkedLists\Nodes\DoublyLinkedListNode;
+use KennedyOsaze\DataStructuresAndAlgorithms\DataStructures\LinkedLists\Nodes\DoublyLinkedListNode;
 
 class DoublyLinkedList extends LinkedList
 {
@@ -163,7 +163,7 @@ class DoublyLinkedList extends LinkedList
      *
      * @param mixed $value
      *
-     * @return \KennedyOsaze\DataStructures\LinkedLists\Nodes\DoublyLinkedListNode
+     * @return \KennedyOsaze\DataStructuresAndAlgorithms\DataStructures\LinkedLists\Nodes\DoublyLinkedListNode
      */
     protected function createNodeFromValue($value)
     {

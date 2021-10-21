@@ -1,8 +1,8 @@
 <?php
 
-namespace KennedyOsaze\DataStructures\LinkedLists;
+namespace KennedyOsaze\DataStructuresAndAlgorithms\DataStructures\LinkedLists;
 
-use KennedyOsaze\DataStructures\LinkedLists\Nodes\SinglyLinkedListNode;
+use KennedyOsaze\DataStructuresAndAlgorithms\DataStructures\LinkedLists\Nodes\SinglyLinkedListNode;
 
 class SinglyLinkedList extends LinkedList
 {
@@ -125,7 +125,7 @@ class SinglyLinkedList extends LinkedList
      *
      * @param mixed $value
      *
-     * @return \KennedyOsaze\DataStructures\LinkedLists\Nodes\SinglyLinkedListNode
+     * @return \KennedyOsaze\DataStructuresAndAlgorithms\DataStructures\LinkedLists\Nodes\SinglyLinkedListNode
      */
     protected function createNodeFromValue($value)
     {

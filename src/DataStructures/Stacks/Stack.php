@@ -1,6 +1,6 @@
 <?php
 
-namespace KennedyOsaze\Algorithms\DataStructures\Stacks;
+namespace KennedyOsaze\DataStructuresAndAlgorithms\Algorithms\DataStructures\Stacks;
 
 class Stack
 {

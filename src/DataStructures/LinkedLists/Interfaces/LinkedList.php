@@ -1,6 +1,6 @@
 <?php
 
-namespace KennedyOsaze\DataStructures\LinkedLists\Interfaces;
+namespace KennedyOsaze\DataStructuresAndAlgorithms\DataStructures\LinkedLists\Interfaces;
 
 interface LinkedList
 {

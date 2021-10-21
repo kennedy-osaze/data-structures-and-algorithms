@@ -1,8 +1,8 @@
 <?php
 
-namespace KennedyOsaze\Algorithms\DataStructures\Queues;
+namespace KennedyOsaze\DataStructuresAndAlgorithms\Algorithms\DataStructures\Queues;
 
-use KennedyOsaze\DataStructures\Queues\Queue;
+use KennedyOsaze\DataStructuresAndAlgorithms\DataStructures\Queues\Queue;
 
 function hotPotatoGame(array $list)
 {

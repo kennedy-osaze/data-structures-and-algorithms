@@ -1,9 +1,9 @@
 <?php
 
-namespace KennedyOsaze\Algorithms\DataStructures\HashTables;
+namespace KennedyOsaze\DataStructuresAndAlgorithms\Algorithms\DataStructures\HashTables;
 
-use KennedyOsaze\DataStructures\HashTables\KeyValueObject;
-use KennedyOsaze\DataStructures\LinkedLists\SinglyLinkedList as LinkedList;
+use KennedyOsaze\DataStructuresAndAlgorithms\DataStructures\HashTables\KeyValueObject;
+use KennedyOsaze\DataStructuresAndAlgorithms\DataStructures\LinkedLists\SinglyLinkedList as LinkedList;
 
 class HashTable
 {

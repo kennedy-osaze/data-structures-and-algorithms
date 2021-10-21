@@ -1,8 +1,8 @@
 <?php
 
-namespace KennedyOsaze\DataStructures\Queues;
+namespace KennedyOsaze\DataStructuresAndAlgorithms\DataStructures\Queues;
 
-use KennedyOsaze\DataStructures\LinkedLists\Nodes\SinglyLinkedListNode as Node;
+use KennedyOsaze\DataStructuresAndAlgorithms\DataStructures\LinkedLists\Nodes\SinglyLinkedListNode as Node;
 
 class Queue
 {
@@ -104,7 +104,7 @@ class Queue
     /**
      * Create a node using the specified $data
      *
-     * @return \KennedyOsaze\DataStructures\LinkedLists\Nodes\SinglyLinkedListNode
+     * @return \KennedyOsaze\DataStructuresAndAlgorithms\DataStructures\LinkedLists\Nodes\SinglyLinkedListNode
      */
     private function createNode($data)
     {

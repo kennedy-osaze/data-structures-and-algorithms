@@ -1,6 +1,6 @@
 <?php
 
-namespace KennedyOsaze\DataStructures\HashTables;
+namespace KennedyOsaze\DataStructuresAndAlgorithms\DataStructures\HashTables;
 
 class KeyValueObject
 {

@@ -1,12 +1,12 @@
 <?php
 
-namespace KennedyOsaze\DataStructures\LinkedLists;
+namespace KennedyOsaze\DataStructuresAndAlgorithms\DataStructures\LinkedLists;
 
 use ArrayAccess;
 use Countable;
 use IteratorAggregate;
-use KennedyOsaze\DataStructures\LinkedLists\Interfaces\LinkedList as LinkedListInterface;
-use KennedyOsaze\DataStructures\LinkedLists\Nodes\Node;
+use KennedyOsaze\DataStructuresAndAlgorithms\DataStructures\LinkedLists\Interfaces\LinkedList as LinkedListInterface;
+use KennedyOsaze\DataStructuresAndAlgorithms\DataStructures\LinkedLists\Nodes\Node;
 
 abstract class LinkedList implements LinkedListInterface, IteratorAggregate, Countable, ArrayAccess
 {
@@ -45,7 +45,7 @@ abstract class LinkedList implements LinkedListInterface, IteratorAggregate, Cou
     /**
      * Adds the first node to the LinkedList
      *
-     * @param \KennedyOsaze\DataStructures\LinkedLists\Nodes\Node $node
+     * @param \KennedyOsaze\DataStructuresAndAlgorithms\DataStructures\LinkedLists\Nodes\Node $node
      *
      * @return void
      */
@@ -105,7 +105,7 @@ abstract class LinkedList implements LinkedListInterface, IteratorAggregate, Cou
      *
      * @param int $index
      *
-     * @return \KennedyOsaze\DataStructures\LinkedLists\Nodes\Node|\KennedyOsaze\DataStructures\LinkedLists\Nodes\SinglyLinkedListNode|\KennedyOsaze\DataStructures\LinkedLists\Nodes\DoublyLinkedListNode|null
+     * @return \KennedyOsaze\DataStructuresAndAlgorithms\DataStructures\LinkedLists\Nodes\Node|\KennedyOsaze\DataStructuresAndAlgorithms\DataStructures\LinkedLists\Nodes\SinglyLinkedListNode|\KennedyOsaze\DataStructuresAndAlgorithms\DataStructures\LinkedLists\Nodes\DoublyLinkedListNode|null
      */
     public function find(int $index)
     {
@@ -129,7 +129,7 @@ abstract class LinkedList implements LinkedListInterface, IteratorAggregate, Cou
      *
      * @param int $index
      *
-     * @return \KennedyOsaze\DataStructures\LinkedLists\Nodes\Node|\KennedyOsaze\DataStructures\LinkedLists\Nodes\SinglyLinkedListNode|\KennedyOsaze\DataStructures\LinkedLists\Nodes\DoublyLinkedListNode|null
+     * @return \KennedyOsaze\DataStructuresAndAlgorithms\DataStructures\LinkedLists\Nodes\Node|\KennedyOsaze\DataStructuresAndAlgorithms\DataStructures\LinkedLists\Nodes\SinglyLinkedListNode|\KennedyOsaze\DataStructuresAndAlgorithms\DataStructures\LinkedLists\Nodes\DoublyLinkedListNode|null
      */
     protected function traverseToIndex(int $index)
     {
@@ -194,7 +194,7 @@ abstract class LinkedList implements LinkedListInterface, IteratorAggregate, Cou
     /**
      * Get the node the LinkedList head is referencing
      *
-     * @return \KennedyOsaze\DataStructures\LinkedLists\Nodes\Node|\KennedyOsaze\DataStructures\LinkedLists\Nodes\SinglyLinkedListNode|\KennedyOsaze\DataStructures\LinkedLists\Nodes\DoublyLinkedListNode|null
+     * @return \KennedyOsaze\DataStructuresAndAlgorithms\DataStructures\LinkedLists\Nodes\Node|\KennedyOsaze\DataStructuresAndAlgorithms\DataStructures\LinkedLists\Nodes\SinglyLinkedListNode|\KennedyOsaze\DataStructuresAndAlgorithms\DataStructures\LinkedLists\Nodes\DoublyLinkedListNode|null
      */
     public function getHead()
     {
@@ -204,7 +204,7 @@ abstract class LinkedList implements LinkedListInterface, IteratorAggregate, Cou
     /**
      * Get the node the LinkedList tail is referencing
      *
-     * @return \KennedyOsaze\DataStructures\LinkedLists\Nodes\Node|\KennedyOsaze\DataStructures\LinkedLists\Nodes\SinglyLinkedListNode|\KennedyOsaze\DataStructures\LinkedLists\Nodes\DoublyLinkedListNode|null
+     * @return \KennedyOsaze\DataStructuresAndAlgorithms\DataStructures\LinkedLists\Nodes\Node|\KennedyOsaze\DataStructuresAndAlgorithms\DataStructures\LinkedLists\Nodes\SinglyLinkedListNode|\KennedyOsaze\DataStructuresAndAlgorithms\DataStructures\LinkedLists\Nodes\DoublyLinkedListNode|null
      */
     public function getTail()
     {
@@ -224,7 +224,7 @@ abstract class LinkedList implements LinkedListInterface, IteratorAggregate, Cou
     /**
      * Iterator for Linked list
      *
-     * @return \Generator|\KennedyOsaze\DataStructures\LinkedLists\Nodes\Node[]|\KennedyOsaze\DataStructures\LinkedLists\Nodes\SinglyLinkedListNode[]|\KennedyOsaze\DataStructures\LinkedLists\Nodes\DoublyLinkedListNode[]|null
+     * @return \Generator|\KennedyOsaze\DataStructuresAndAlgorithms\DataStructures\LinkedLists\Nodes\Node[]|\KennedyOsaze\DataStructuresAndAlgorithms\DataStructures\LinkedLists\Nodes\SinglyLinkedListNode[]|\KennedyOsaze\DataStructuresAndAlgorithms\DataStructures\LinkedLists\Nodes\DoublyLinkedListNode[]|null
      */
     public function getIterator()
     {
@@ -292,7 +292,7 @@ abstract class LinkedList implements LinkedListInterface, IteratorAggregate, Cou
      *
      * @param mixed $value
      *
-     * @return \KennedyOsaze\DataStructures\LinkedLists\Nodes\Node
+     * @return \KennedyOsaze\DataStructuresAndAlgorithms\DataStructures\LinkedLists\Nodes\Node
      */
     abstract protected function createNodeFromValue($value);
 }

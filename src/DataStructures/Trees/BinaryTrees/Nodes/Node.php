@@ -1,6 +1,6 @@
 <?php
 
-namespace KennedyOsaze\Algorithms\DataStructures\Trees\BinaryTrees\Nodes;
+namespace KennedyOsaze\DataStructuresAndAlgorithms\DataStructures\Trees\BinaryTrees\Nodes;
 
 use InvalidArgumentException;
 

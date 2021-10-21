@@ -2,7 +2,7 @@
 
 namespace KennedyOsaze\DataStructures\Queues;
 
-use KennedyOsaze\DataStructures\LinkedLists\Nodes\SinglyLinkedListNode as Node;
+use KennedyOsaze\DataStructuresAndAlgorithms\DataStructures\LinkedLists\Nodes\SinglyLinkedListNode as Node;
 
 class PriorityQueue
 {

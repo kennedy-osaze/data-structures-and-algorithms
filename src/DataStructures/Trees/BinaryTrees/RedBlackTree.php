@@ -1,9 +1,9 @@
 <?php
 
-namespace KennedyOsaze\Algorithms\DataStructures\Trees\BinaryTrees;
+namespace KennedyOsaze\DataStructuresAndAlgorithms\DataStructures\Trees\BinaryTrees;
 
-use KennedyOsaze\Algorithms\DataStructures\Trees\BinaryTrees\Nodes\Node;
-use KennedyOsaze\Algorithms\DataStructures\Trees\BinaryTrees\Nodes\RedBlackNode;
+use KennedyOsaze\DataStructuresAndAlgorithms\DataStructures\Trees\BinaryTrees\Nodes\Node;
+use KennedyOsaze\DataStructuresAndAlgorithms\DataStructures\Trees\BinaryTrees\Nodes\RedBlackNode;
 
 class RedBlackTree extends BinarySearchTree
 {
