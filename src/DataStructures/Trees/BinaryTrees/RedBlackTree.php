@@ -85,6 +85,8 @@ class RedBlackTree extends BinarySearchTree
         }
 
         $this->deleteNode($node, $value);
+
+        $this->size--;
     }
 
     protected function deleteNode(?Node $node = null, $value)
